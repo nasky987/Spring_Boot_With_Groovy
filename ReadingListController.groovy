@@ -1,5 +1,5 @@
 @Controller
-@RequestMaping("/")
+@RequestMapping("/")
 class ReadingListController {
 	String reader = "hreeman"
 

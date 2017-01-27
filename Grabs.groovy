@@ -1,3 +1,3 @@
 @Grab("h2")
-@Grab("spring-boot-stater-thymeleaf")
+@Grab("spring-boot-starter-thymeleaf")
 class Grabs {}

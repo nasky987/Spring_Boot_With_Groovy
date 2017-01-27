@@ -4,10 +4,10 @@ class JdbcReadingListRepository implements ReadingListRepository {
 	@Autowired
 	JdbcTemplate Jdbc //Dependency Inject JdbcTemplate
 
-	List<book> findByReader(String reader) {
+	List<Book> findByReader(String reader) {
 		jdbc.query(
-			"SELECT ID, READER, ISBN, TITLE, AUTHOR, DESCRIPTION" +
-			"FROM BOOK WHERE READER = ?",
+			"SELECT id, reader, isbn, title, author, description " +
+			"FROM Book WHERE reader = ?",
 			{
 				rs, row ->
 					new Book(
@@ -16,7 +16,7 @@ class JdbcReadingListRepository implements ReadingListRepository {
 						isbn: rs.getString(3),
 						title: rs.getString(4),
 						author: rs.getString(5),
-						descrption: rs.getString(6)
+						description: rs.getString(6)
 					)
 			} as RowMapper, //RowMapper Clousure
 			reader
@@ -25,8 +25,8 @@ class JdbcReadingListRepository implements ReadingListRepository {
 
 	void save(Book book) {
 		jdbc.update(
-			"INSERT INTO BOOK " +
-			"(READER, ISBN, TITLE, AUTHOR, DESCRIPTION) " +
+			"INSERT INTO Book " +
+			"(reader, isbn, title, author, description) " +
 			"VALUES (?, ?, ?, ?, ?)",
 			book.reader,
 			book.isbn,
